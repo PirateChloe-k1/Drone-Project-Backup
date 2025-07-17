@@ -23,7 +23,7 @@ const routes = [
             {
                 path: "/M1",
                 components: {
-                    default: () => import("../view/mdc/M1.vue"),
+                    default: () => import("../view/mdc/M1_copy.vue"),
                     header: headerNav,
                     footer: footerNav,
                 },

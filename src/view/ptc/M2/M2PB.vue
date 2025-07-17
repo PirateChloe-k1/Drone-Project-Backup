@@ -18,11 +18,11 @@ const navTo = () => {
 .m2pb {
   width: 363px;
   height: 277px;
-  background-color: red;
   box-sizing: border-box;
   border: 2px solid #61b8fd;
   border-radius: 5px;
   position: relative;
+  background: url("@/assets/imgs/m2/BG11.png");
 
   &-btn {
     width: 53px;
