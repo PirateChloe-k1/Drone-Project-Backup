@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "PangMenZhengDao";
+    src: url(../font/YouSheBiaoTi.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "PingFang SC";
+    src: url(../font/PingFang-SC-Medium.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Alimama ShuHeiTi";
+    src: url(../font/Alimama_ShuHeiTi_Bold.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "YouSheBiaoTiHei";
+    src: url(../font/YOUSHEBIAOTIHEI-2.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ShiShangZhongJianHeiTi";
+    src: url(../font/ShiShangZhongJianHeiTi.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "SOURCEHANSANSCN";
+    src: url(../font/SOURCEHANSANSCN-NORMAL.OTF);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "OPPOSans";
+    src: url(../font/Font-OPPOSans/OPPOSans-L.ttf);
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "OPPOSans";
+    src: url(../font/Font-OPPOSans/OPPOSans-R.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "OPPOSans";
+    src: url(../font/Font-OPPOSans/OPPOSans-M.ttf);
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "OPPOSans";
+    src: url(../font/Font-OPPOSans/OPPOSans-B.ttf);
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "OPPOSans";
+    src: url(../font/Font-OPPOSans/OPPOSans-H.ttf);
+    font-weight: 900;
+    font-style: normal;
+}
