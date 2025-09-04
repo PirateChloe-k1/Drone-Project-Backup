@@ -1,5 +1,5 @@
 <template>
-  <div class="video-background">
+  <div class="video-background" :class="{ 'pip-mode': isPip }">
     <video
       ref="videoRef"
       autoplay
@@ -26,6 +26,11 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import Hls from 'hls.js'
+
+// 接收小窗模式参数
+const props = defineProps<{
+  isPip?: boolean; // 新增：是否为小窗模式
+}>();
 
 const videoRef = ref<HTMLVideoElement>()
 const videoSrc = ref('/stream/playlist.m3u8')
@@ -132,6 +137,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .video-background {
+  // 全屏模式样式
   position: fixed;
   top: 0;
   left: 0;
@@ -139,6 +145,16 @@ onUnmounted(() => {
   height: 100vh;
   z-index: -1;
   overflow: hidden;
+
+  // 小窗模式样式（覆盖全屏样式）
+  &.pip-mode {
+    position: absolute; /* 改为absolute定位 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* 确保在小窗容器内正确显示 */
+  }
 
   video {
     width: 100%;
