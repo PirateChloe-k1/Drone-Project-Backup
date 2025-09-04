@@ -1,5 +1,8 @@
 <template>
   <div class="m2">
+    <!-- 添加视频背景组件 -->
+    <VideoBackground />
+
     <div class="m2-top">
       <M2PA />
       <M2PB class="m2-top-map" />
@@ -23,12 +26,14 @@ import M2PD from "@/view/ptc/M2/M2PD.vue";
 import M2PG from "@/view/ptc/M2/M2PG.vue";
 import M2PH from "@/view/ptc/M2/M2PH.vue";
 import M2PI from "@/view/ptc/M2/M2PI.vue";
+import VideoBackground from "@/view/aitest/VideoBackground.vue";
 </script>
 <style lang="scss" scoped>
 .m2 {
   box-shadow: inset 0 0 160px #081c33;
   width: 100vw;
   height: 100vh;
+  position: relative; // 确保定位正确
 
   &-top {
     padding: 26px 16px 0;
