@@ -1,12 +1,12 @@
 <template>
   <div class="m2">
-    <!-- 新增：图片背景 - 在切换后显示 -->
+    <!-- 图片背景 - 在切换后显示 -->
     <div 
       v-if="isVideoInPip" 
       class="background-image"
       :style="{ backgroundImage: `url(${backgroundImageUrl})` }"
     ></div>
-    <!-- 背景视频 - 仅在未切换时显示 -->
+    <!-- 视频背景 - 在未切换时显示 -->
     <VideoBackground v-if="!isVideoInPip" :isPip="false" />
 
     <div class="m2-top">
@@ -22,7 +22,8 @@
     <div class="m2-bottom">
       <div class="m2-bottom-R">
         <M2PC />
-        <M2PD />
+        <!-- <M2PD /> -->
+        <M2PE />
       </div>
       <M2PG />
       <M2PH />
@@ -35,7 +36,8 @@ import { ref } from "vue";
 import M2PA from "@/view/ptc/M2/M2PA.vue";
 import M2PB from "@/view/ptc/M2/M2PB.vue";
 import M2PC from "@/view/ptc/M2/M2PC.vue";
-import M2PD from "@/view/ptc/M2/M2PD.vue";
+// import M2PD from "@/view/ptc/M2/M2PD.vue";
+import M2PE from "@/view/ptc/M2/M2PE.vue";
 import M2PG from "@/view/ptc/M2/M2PG.vue";
 import M2PH from "@/view/ptc/M2/M2PH.vue";
 import M2PI from "@/view/ptc/M2/M2PI.vue";
