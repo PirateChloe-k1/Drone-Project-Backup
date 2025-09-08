@@ -41,16 +41,17 @@ const menu = [
 
 <style lang="scss" scoped>
 .m2pd {
-  width: 337px;
-  height: 140px;
+  aspect-ratio: 337/140;
+  width: 100%;
   border-radius: 5px;
   background: url("@/assets/imgs/m2/BG1.png");
   display: flex;
   gap: 14px;
-  padding: 18px 16px;
+  padding: 6px 16px;
   font-family: SOURCEHANSANSCN;
 
   &-data {
+    margin-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

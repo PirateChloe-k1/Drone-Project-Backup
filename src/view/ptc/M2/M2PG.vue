@@ -5,7 +5,7 @@
         <div class="m2pg-RL-item-label">水平速度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            RData.horizontalVelocity
+            LData.horizontalVelocity
           }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
@@ -14,7 +14,7 @@
         <div class="m2pg-RL-item-label">垂直速度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            RData.verticalVelocity
+            LData.verticalVelocity
           }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
@@ -22,7 +22,7 @@
       <div class="m2pg-RL-item m2pg-RL-L">
         <div class="m2pg-RL-item-label">风速</div>
         <div class="m2pg-RL-item-center">
-          <span class="m2pg-RL-item-center-value">{{ RData.windSpeed }}</span>
+          <span class="m2pg-RL-item-center-value">{{ LData.windSpeed }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
       </div>
