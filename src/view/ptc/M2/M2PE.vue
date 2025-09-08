@@ -59,13 +59,13 @@ const handleRotate = (direction: 'clockwise' | 'counterclockwise') => {
 
 <style lang="scss" scoped>
 .m2pd {
-    aspect-ratio: 337/160;
+    aspect-ratio: 337/140;
     width: 100%;
     border-radius: 5px;
     background: url("@/assets/imgs/m2/BG1.png") center/contain no-repeat;
     display: flex;
     gap: 14px;
-    padding: 18px 16px;
+    padding: 4px 16px;
     font-family: SOURCEHANSANSCN;
 
     &-data {
