@@ -1,31 +1,24 @@
 <template>
   <div class="m2">
     <!-- 图片背景 - 在切换后显示 -->
-    <div 
-      v-if="isVideoInPip" 
-      class="background-image"
-      :style="{ backgroundImage: `url(${backgroundImageUrl})` }"
-    ></div>
+    <div v-if="isVideoInPip" class="background-image" :style="{ backgroundImage: `url(${backgroundImageUrl})` }"></div>
     <!-- 视频背景 - 在未切换时显示 -->
     <VideoBackground v-if="!isVideoInPip" :isPip="false" />
 
     <div class="m2-top">
       <M2PA />
-      <M2PB 
-        class="m2-top-map" 
-        :is-video-in-pip="isVideoInPip"
-        :original-bg="'/src/assets/imgs/m2/BG11.png'"
-        :m2-bg="'/src/assets/imgs/m2/BG11.png'"
-        @toggle-video="toggleVideoPosition"
-      />
+      <M2PB class="m2-top-map" :is-video-in-pip="isVideoInPip" :original-bg="'/src/assets/imgs/m2/BG11.png'"
+        :m2-bg="'/src/assets/imgs/m2/BG11.png'" @toggle-video="toggleVideoPosition" />
     </div>
     <div class="m2-bottom">
       <div class="m2-bottom-R">
         <M2PC />
         <!-- <M2PD /> -->
-        <M2PE />
+        <!-- 监听M2PE的旋转事件 -->
+        <M2PE @rotate-compass="handleCompassRotate" />
       </div>
-      <M2PG />
+      <!-- 将旋转角度传递给M2PG -->
+      <M2PG :compass-angle="compassAngle" />
       <M2PH />
     </div>
     <M2PI class="m2-M2PI" />
@@ -51,6 +44,27 @@ const isVideoInPip = ref(false);
 const toggleVideoPosition = () => {
   isVideoInPip.value = !isVideoInPip.value;
 };
+
+// 定义罗盘旋转角度
+const compassAngle = ref(0)
+
+// 处理罗盘旋转
+const handleCompassRotate = (direction: 'clockwise' | 'counterclockwise') => {
+  // 每次旋转10度
+  const step = 10;
+  if (direction === 'clockwise') {
+    compassAngle.value += step;
+  } else {
+    compassAngle.value -= step;
+  }
+
+  // 保持角度在0-360度范围
+  if (compassAngle.value >= 360) {
+    compassAngle.value = 0;
+  } else if (compassAngle.value < 0) {
+    compassAngle.value = 350;
+  }
+}
 </script>
 <style lang="scss" scoped>
 .m2 {
@@ -101,7 +115,8 @@ const toggleVideoPosition = () => {
     height: 100vh;
     background-size: cover;
     background-position: center;
-    z-index: -1; /* 确保在底层 */
+    z-index: -1;
+    /* 确保在底层 */
   }
 }
 </style>

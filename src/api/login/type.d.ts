@@ -1,20 +1,3 @@
-// 定义 Login 方法请求参数类型
-export interface LoginParams {
-    username: string;
-    password: string;
-    code: string;
-    captchaId: string;
-    sId: string;
-}
-  
-// 定义 Logout 方法请求参数类型
-export interface LogoutParams {
-    token: string; 
-}
-  
-// 定义 GetInfo 返回的响应类型
-export interface UserInfo {
-    username: string;
-    email: string;
-}
-  
+version https://git-lfs.github.com/spec/v1
+oid sha256:c89e72597baaf7586f01512353a90e5a9b8d0240dc19e0b08d7586ae86bd39e1
+size 410

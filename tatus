@@ -1,0 +1,41 @@
+[33mcommit 693856cb486ed5033476fcc5b661f5c1604788a1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: PirateChloe <piratechloe04@outlook.com>
+Date:   Mon Sep 8 09:47:25 2025 +0800
+
+    PS E:\Work\wurenji\cmrid-dcs-board> git add .
+
+[33mcommit e83fbbef778990769db2e113a68027a06291b567[m[33m ([m[1;31mnew-origin/main[m[33m, [m[1;31mnew-origin/HEAD[m[33m)[m
+Author: PirateChloe <piratechloe04@outlook.com>
+Date:   Fri Sep 5 10:47:46 2025 +0800
+
+    M2PE方向调节组件静态样式优化
+
+[33mcommit bb3ceb44689cb6124a9fc50d5d855958347b9acf[m
+Author: PirateChloe <piratechloe04@outlook.com>
+Date:   Fri Sep 5 09:44:59 2025 +0800
+
+    M2PE方向调节组件静态样式完成
+
+[33mcommit dd067d15c6d37e5b884df130344a76eb1638b037[m
+Author: PirateChloe <piratechloe04@outlook.com>
+Date:   Thu Sep 4 14:56:17 2025 +0800
+
+    PB小窗与M2背景切换实现
+
+[33mcommit 115ecfa629e2fab9036d9c928628d4e2eb3cce4e[m
+Author: PirateChloe <piratechloe04@outlook.com>
+Date:   Thu Sep 4 10:19:00 2025 +0800
+
+    串流视频组件
+
+[33mcommit 588dbeb6ae8ab7995223608d8c29135496928242[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: dong <1043495156@qq.com>
+Date:   Thu Jul 17 11:30:11 2025 +0800
+
+    按照ui还原第一版本
+
+[33mcommit 7c166c6ec5a6094dc86a049d2a75136f133a8967[m
+Author: dong <1043495156@qq.com>
+Date:   Thu Jul 17 11:28:11 2025 +0800
+
+    按照设计图还原第一版

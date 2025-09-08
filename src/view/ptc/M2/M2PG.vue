@@ -31,23 +31,17 @@
       <div class="m2pg-C-L">
         <div class="m2pg-C-L-value">{{ CData.value }}°</div>
         <div class="m2pg-C-L-bar">
-          <img
-            src="@/assets/imgs/m2/IMG3.png"
-            class="m2pg-C-L-bar-arrow"
-            :style="{ top: 'calc(50% - ' + CData.value + 'px)' }"
-          />
+          <img src="@/assets/imgs/m2/IMG3.png" class="m2pg-C-L-bar-arrow"
+            :style="{ top: 'calc(50% - ' + CData.value + 'px)' }" />
         </div>
       </div>
       <div class="m2pg-C-R">
-        <div class="m2pg-C-R-value">{{ CData.angle }}°</div>
+        <div class="m2pg-C-R-value">{{ angle.toFixed(1) }}°</div>
         <div class="m2pg-C-R-bar">
           <!-- 图片给了一个19.3°的自带旋转 -->
-          <div
-            class="m2pg-C-R-bar-BG"
-            :style="{
-              transform: 'rotate(calc(' + CData.angle + ' - 19.3)deg)',
-            }"
-          ></div>
+          <div class="m2pg-C-R-bar-BG" :style="{
+            transform: `rotate(calc(${angle}deg - 19.3deg))`
+          }"></div>
           <img src="@/assets/imgs/m2/IMG5.png" class="m2pg-C-R-bar-arrow" />
           <img src="@/assets/imgs/m2/IMG1.png" class="m2pg-C-R-bar-location" />
         </div>
@@ -84,6 +78,8 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, defineProps, watch } from 'vue';
+
 const RData = {
   horizontalVelocity: "1.26",
   verticalVelocity: "94.9",
@@ -98,6 +94,21 @@ const CData = {
   value: 0,
   angle: 19.3,
 };
+
+// 接收父组件传递的角度
+const props = defineProps<{
+  compassAngle: number;
+}>();
+
+// 计算最终角度
+const angle = ref(19.3)
+
+// 监听角度变化
+watch(() => props.compassAngle, (newVal) => {
+  angle.value = 19.3 + newVal;
+  // 限制角度在0-360度循环
+  angle.value = ((angle.value % 360) + 360) % 360;
+})
 </script>
 
 <style lang="scss" scoped>
@@ -190,6 +201,8 @@ const CData = {
           z-index: 2;
           transform: translateY(-50%);
         }
+
+
       }
     }
 
@@ -205,6 +218,7 @@ const CData = {
         font-size: 16px;
         color: #fdf0a1;
       }
+
       &-bar {
         width: 125.71px;
         height: 125.71px;
@@ -219,6 +233,8 @@ const CData = {
           top: 0;
           left: 0;
           z-index: 1;
+          // 添加旋转过渡动画：transform变化时，0.3秒内平滑过渡
+          transition: transform 0.3s ease;
         }
 
         &-arrow {

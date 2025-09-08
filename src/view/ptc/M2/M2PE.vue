@@ -4,9 +4,9 @@
             <div class="m2pd-data-center">
                 <!-- 顶部按键 -->
                 <div class="key-row">
-                    <button class="keyboard-key">Q</button>
+                    <button class="keyboard-key" @click="handleRotate('counterclockwise')">Q</button>
                     <button class="keyboard-key">W</button>
-                    <button class="keyboard-key">E</button>
+                    <button class="keyboard-key" @click="handleRotate('clockwise')">E</button>
                     <button class="keyboard-key keyboard-key-up">C</button>
                 </div>
                 <!-- 底部按键 -->
@@ -29,6 +29,7 @@
 </template>
 
 <script lang="ts" setup>
+import { defineEmits } from 'vue';
 const data = {
     distance: "24.28",
     hours: "7",
@@ -44,14 +45,22 @@ const menu = [
         label: "急停",
     },
 ];
+
+// 定义旋转事件
+const emit = defineEmits<{
+  (e: 'rotate-compass', direction: 'clockwise' | 'counterclockwise'): void;
+}>();
+
+// 处理旋转事件
+const handleRotate = (direction: 'clockwise' | 'counterclockwise') => {
+  emit('rotate-compass', direction);
+};
 </script>
 
 <style lang="scss" scoped>
 .m2pd {
-    aspect-ratio: 337/140;
+    aspect-ratio: 337/160;
     width: 100%;
-    /* 增加高度以容纳箭头 */
-    // height: 180px;
     border-radius: 5px;
     background: url("@/assets/imgs/m2/BG1.png") center/contain no-repeat;
     display: flex;
@@ -69,6 +78,7 @@ const menu = [
             display: flex;
             flex-direction: column;
             gap: 16px;
+            margin-top: 10px;
 
             .key-row {
                 display: flex;
@@ -116,7 +126,7 @@ const menu = [
                 box-sizing: border-box;
                 border: 1px solid #79c1ff;
                 color: #fff;
-                width: 189px;
+                width: 100%;
                 font-size: 14px;
                 text-align: center;
                 padding: 6px 0;
@@ -134,7 +144,9 @@ const menu = [
         &-menu {
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 5px;
+            margin-top: 10px;
+            justify-content: space-between;
 
             &-item {
                 width: 103px;
