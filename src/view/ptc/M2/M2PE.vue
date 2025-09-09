@@ -48,12 +48,12 @@ const menu = [
 
 // 定义旋转事件
 const emit = defineEmits<{
-  (e: 'rotate-compass', direction: 'clockwise' | 'counterclockwise'): void;
+    (e: 'rotate-compass', direction: 'clockwise' | 'counterclockwise'): void;
 }>();
 
 // 处理旋转事件
 const handleRotate = (direction: 'clockwise' | 'counterclockwise') => {
-  emit('rotate-compass', direction);
+    emit('rotate-compass', direction);
 };
 </script>
 
@@ -99,82 +99,91 @@ const handleRotate = (direction: 'clockwise' | 'counterclockwise') => {
                 cursor: pointer;
                 transition: all 0.2s ease;
 
-                &-up, &-down {
+                &-up,
+                &-down {
                     position: relative;
                     margin-left: 25px;
                 }
 
-                    &:hover {
-                        background: linear-gradient(0deg,
-                                rgba(71, 164, 235, 0.8) 0%,
-                                rgba(75, 135, 181, 0.4) 100%);
-                        /* 悬停时轻微放大 */
-                        transform: scale(1.05);
-                    }
+                &:hover {
+                    background: linear-gradient(0deg,
+                            rgba(71, 164, 235, 0.8) 0%,
+                            rgba(75, 135, 181, 0.4) 100%);
+                    /* 悬停时轻微放大 */
+                    transform: scale(1.05);
+                }
 
-                    &:active {
-                        /* 点击时轻微缩小 */
-                        transform: scale(0.98);
-                    }
+                &:active {
+                    /* 点击时轻微缩小 */
+                    transform: scale(0.98);
                 }
             }
+        }
 
-            &-btn {
+        &-btn {
+            background: linear-gradient(0deg,
+                    rgba(71, 164, 235, 0.8) 0%,
+                    rgba(75, 135, 181, 0) 100%);
+            box-sizing: border-box;
+            border: 1px solid #79c1ff;
+            color: #fff;
+            width: 100%;
+            font-size: 14px;
+            text-align: center;
+            padding: 6px 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
                 background: linear-gradient(0deg,
-                        rgba(71, 164, 235, 0.8) 0%,
-                        rgba(75, 135, 181, 0) 100%);
-                box-sizing: border-box;
-                border: 1px solid #79c1ff;
-                color: #fff;
-                width: 100%;
-                font-size: 14px;
-                text-align: center;
-                padding: 6px 0;
+                        rgba(71, 164, 235, 1) 0%,
+                        rgba(75, 135, 181, 0.2) 100%);
+            }
+        }
+    }
+
+    &-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 10px;
+        justify-content: space-between;
+
+        &-item {
+            width: 103px;
+            height: 30px;
+            background: linear-gradient(0deg,
+                    rgba(71, 164, 235, 0.4) 0%,
+                    rgba(75, 135, 181, 0) 100%);
+            border: 1px solid #79c1ff;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+
+            &:hover {
                 cursor: pointer;
-                transition: all 0.2s ease;
+                background: linear-gradient(0deg,
+                        rgba(71, 164, 235, 1) 0%,
+                        rgba(75, 135, 181, 0.2) 100%);
+            }
+
+            &.emergency {
+                background: linear-gradient(0deg,
+                        rgba(235, 71, 71, 0.7) 0%,
+                        rgba(181, 75, 75, 0.3) 100%);
+                border-color: #ff7979;
 
                 &:hover {
                     background: linear-gradient(0deg,
-                            rgba(71, 164, 235, 1) 0%,
-                            rgba(75, 135, 181, 0.2) 100%);
+                            rgba(235, 71, 71, 0.9) 0%,
+                            rgba(181, 75, 75, 0.5) 100%);
                 }
             }
+
         }
-
-        &-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-top: 10px;
-            justify-content: space-between;
-
-            &-item {
-                width: 103px;
-                height: 30px;
-                background: linear-gradient(0deg,
-                        rgba(71, 164, 235, 0.4) 0%,
-                        rgba(75, 135, 181, 0) 100%);
-                border: 1px solid #79c1ff;
-                border-radius: 4px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
-                font-size: 14px;
-
-                &.emergency {
-                    background: linear-gradient(0deg,
-                            rgba(235, 71, 71, 0.7) 0%,
-                            rgba(181, 75, 75, 0.3) 100%);
-                    border-color: #ff7979;
-
-                    &:hover {
-                        background: linear-gradient(0deg,
-                                rgba(235, 71, 71, 0.9) 0%,
-                                rgba(181, 75, 75, 0.5) 100%);
-                    }
-                }
-
-            }
-        }
-    }</style>
+    }
+}
+</style>

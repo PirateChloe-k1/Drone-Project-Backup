@@ -78,6 +78,12 @@ const toggleVideoPosition = () => {
     border-radius: 2px;
     cursor: pointer;
     z-index: 10; // 按钮层级最高，不会被遮挡
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient(0deg,
+          rgba(71, 164, 235, 1) 0%,
+          rgba(75, 135, 181, 0.2) 100%);
+    }
   }
 }
 </style>

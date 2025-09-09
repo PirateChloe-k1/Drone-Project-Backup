@@ -69,10 +69,19 @@ const openPanel = (label:any) => {
     justify-content: center;
     gap: 8px;
     color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
 
     img {
       width: 16px;
       height: 16px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: linear-gradient(0deg,
+          rgba(71, 164, 235, 1) 0%,
+          rgba(75, 135, 181, 0.2) 100%);
     }
   }
 
@@ -82,6 +91,13 @@ const openPanel = (label:any) => {
     background: url("@/assets/imgs/m2/IMG6.png");
     // 修剪切图所带的边框
     transform: translate(calc(-10.5px - 2px), -6px);
+
+    &:hover {
+      cursor: pointer;
+      // background: linear-gradient(0deg,
+      //     rgba(71, 164, 235, 1) 0%,
+      //     rgba(75, 135, 181, 0.2) 100%);
+    }
   }
 }
 </style>

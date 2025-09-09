@@ -1,38 +1,22 @@
 <template>
   <div class="m2pi">
     <div class="m2pi-TC m2pi-T">
-      <div
-        class="m2pi-TC-item"
-        v-for="(item, index) in topData"
-        :key="index"
-        :class="item.active ? 'm2pi-TC-item-active' : ''"
-      >
+      <div class="m2pi-TC-item" v-for="(item, index) in topData" :key="index"
+        :class="item.active ? 'm2pi-TC-item-active' : ''">
         <img :src="getIcon(item.icon)" />
         <span>{{ item.label }}</span>
       </div>
     </div>
 
     <div class="m2pi-TC m2pi-C">
-      <div
-        class="m2pi-TC-item"
-        v-for="(item, index) in centerData"
-        :key="index"
-        :class="item.active ? 'm2pi-TC-item-active' : ''"
-      >
+      <div class="m2pi-TC-item" v-for="(item, index) in centerData" :key="index"
+        :class="item.active ? 'm2pi-TC-item-active' : ''">
         <img :src="getIcon(item.icon)" />
         <span>{{ item.label }}</span>
       </div>
       <div class="m2pi-C-itemA">
-        <img
-          src="@/assets/imgs/m2/ICON16.png"
-          style="width: 22px; height: 19px"
-          alt=""
-        />
-        <img
-          src="@/assets/imgs/m2/ICON17.png"
-          style="width: 22px; height: 22px"
-          alt=""
-        />
+        <img src="@/assets/imgs/m2/ICON16.png" style="width: 22px; height: 19px" alt="" />
+        <img src="@/assets/imgs/m2/ICON17.png" style="width: 22px; height: 22px" alt="" />
       </div>
     </div>
 
@@ -41,12 +25,7 @@
         <div class="m2pi-B-center-move" :style="{ bottom: step + 'px' }">
           <div />
         </div>
-        <div
-          class="m2pi-B-center-item"
-          v-for="(item, index) in list"
-          :key="index"
-          :style="getItemStyle(index)"
-        >
+        <div class="m2pi-B-center-item" v-for="(item, index) in list" :key="index" :style="getItemStyle(index)">
           <div class="m2pi-B-center-item-dot">
             <div />
           </div>
@@ -142,6 +121,15 @@ const getItemStyle = (index) => {
       gap: 7.75px;
       align-items: center;
       justify-content: center;
+      border-radius: 5px;
+      overflow: hidden;
+
+      &:hover {
+        cursor: pointer;
+        background: linear-gradient(0deg,
+            rgba(71, 164, 235, 1) 0%,
+            rgba(75, 135, 181, 0.2) 100%);
+      }
     }
   }
 
@@ -158,6 +146,8 @@ const getItemStyle = (index) => {
       align-items: center;
       justify-content: center;
       gap: 6px;
+      border-radius: 5px;
+      overflow: hidden;
 
       img {
         width: 15px;
@@ -171,6 +161,13 @@ const getItemStyle = (index) => {
         background-clip: text;
         text-fill-color: transparent;
         font-size: 14px;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: linear-gradient(0deg,
+            rgba(71, 164, 235, 1) 0%,
+            rgba(75, 135, 181, 0.2) 100%);
       }
     }
 

@@ -109,6 +109,12 @@ const handleExit = () => {
       font-size: 14px;
       text-align: center;
       padding: 6px 0;
+      &:hover {
+      cursor: pointer;
+      background: linear-gradient(0deg,
+          rgba(71, 164, 235, 1) 0%,
+          rgba(75, 135, 181, 0.2) 100%);
+    }
     }
   }
 
@@ -128,8 +134,15 @@ const handleExit = () => {
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid #79c1ff;
       color: #fff;
       font-size: 14px;
+      &:hover {
+      cursor: pointer;
+      background: linear-gradient(0deg,
+          rgba(71, 164, 235, 1) 0%,
+          rgba(75, 135, 181, 0.2) 100%);
+    }
     }
   }
 }
