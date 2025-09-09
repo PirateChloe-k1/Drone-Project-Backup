@@ -13,13 +13,14 @@
     <div class="m2-bottom">
       <div class="m2-bottom-R">
         <M2PC />
-        <!-- <M2PD /> -->
+        <M2PD :visible="isM2PDVisible" @close-panel="isM2PDVisible = false"/>
         <!-- 监听M2PE的旋转事件 -->
         <M2PE @rotate-compass="handleCompassRotate" />
       </div>
       <!-- 将旋转角度传递给M2PG -->
       <M2PG :compass-angle="compassAngle" />
-      <M2PH />
+      <!-- 监听M2PH的指点飞行事件 -->
+      <M2PH @open-panel="openPanel" />
     </div>
     <M2PI class="m2-M2PI" />
   </div>
@@ -29,12 +30,20 @@ import { ref } from "vue";
 import M2PA from "@/view/ptc/M2/M2PA.vue";
 import M2PB from "@/view/ptc/M2/M2PB.vue";
 import M2PC from "@/view/ptc/M2/M2PC.vue";
-// import M2PD from "@/view/ptc/M2/M2PD.vue";
+import M2PD from "@/view/ptc/M2/M2PD.vue";
 import M2PE from "@/view/ptc/M2/M2PE.vue";
 import M2PG from "@/view/ptc/M2/M2PG.vue";
 import M2PH from "@/view/ptc/M2/M2PH.vue";
 import M2PI from "@/view/ptc/M2/M2PI.vue";
 import VideoBackground from "@/components/M2/video/VideoBackground.vue";
+// 控制M2PD的显示与隐藏
+const isM2PDVisible = ref(false)
+
+// 控制M2PH的指点飞行是否打开
+const openPanel = () => {
+  isM2PDVisible.value = !isM2PDVisible.value
+}
+
 // 定义背景图片URL常量
 const backgroundImageUrl = '/src/assets/imgs/m2/BG11.png';
 // 默认状态：视频在背景，小窗显示图片
@@ -65,6 +74,7 @@ const handleCompassRotate = (direction: 'clockwise' | 'counterclockwise') => {
     compassAngle.value = 350;
   }
 }
+
 </script>
 <style lang="scss" scoped>
 .m2 {

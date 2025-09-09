@@ -1,5 +1,5 @@
 <template>
-  <div class="m2pd">
+  <div class="m2pd" v-if="visible">
     <div class="m2pd-data">
       <div class="m2pd-data-center">
         <div class="m2pd-data-center-item">
@@ -11,7 +11,7 @@
           ><span class="m2pd-data-center-item-value">{{ data.hours }}s</span>
         </div>
       </div>
-      <div class="m2pd-data-btn">退出指点飞行</div>
+      <div class="m2pd-data-btn" @click="handleExit">退出指点飞行</div>
     </div>
     <div class="m2pd-menu">
       <div class="m2pd-menu-item" v-for="(item, index) in menu" :key="index">
@@ -26,6 +26,7 @@ const data = {
   distance: "24.28",
   hours: "7",
 };
+
 const menu = [
   {
     label: "恢复航线",
@@ -37,6 +38,21 @@ const menu = [
     label: "急停",
   },
 ];
+
+// 向父组件发射关闭面板事件
+const emit = defineEmits<{
+  (e: 'close-panel'): void;
+}>();
+
+// 接收父组件传的visible属性控制组件是否可见
+const props = defineProps<{
+  visible: boolean
+}>()
+
+// 通知父组件关闭面板
+const handleExit = () => {
+  emit('close-panel')
+}
 </script>
 
 <style lang="scss" scoped>

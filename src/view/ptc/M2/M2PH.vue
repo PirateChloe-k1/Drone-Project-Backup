@@ -1,6 +1,10 @@
 <template>
   <div class="m2ph">
-    <div class="m2ph-item" v-for="(item, index) in list" :key="index">
+    <div class="m2ph-item"
+    v-for="(item, index) in list" 
+    :key="index"
+    @click="openPanel(item.label)"
+    >
       <img :src="getIcon(item.icon)" alt="" />
       <span>{{ item.label }}</span>
     </div>
@@ -8,13 +12,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const iconModules = import.meta.glob("@/assets/imgs/m2/*.png", { eager: true });
 
-const getIcon = (icon) => {
-  const path = `/src/assets/imgs/m2/${icon}.png`;
-  return iconModules[path]?.default;
-};
 const list = [
   {
     label: "人工预警",
@@ -32,7 +32,25 @@ const list = [
     label: "目标环绕",
     icon: "ICON11",
   },
-];
+]; 
+
+const getIcon = (icon:any) => {
+  const path = `/src/assets/imgs/m2/${icon}.png`;
+  return iconModules[path]?.default;
+};
+
+// 声明可发射的指点飞行事件
+const emit = defineEmits<{
+  (e:'open-panel'):void
+}>()
+
+// 点击指点飞行按钮，发射open-panel事件，控制M2PD组件的显示与隐藏
+const openPanel = (label:any) => {
+  if(label === '指点飞行'){
+    // 第一次点击显示控制面板，再次点击关闭面板，循环
+    emit('open-panel')
+  }
+}
 </script>
 
 <style lang="scss" scoped>

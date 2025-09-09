@@ -1,7 +1,7 @@
 <template>
-    <div class="m2pd">
-        <div class="m2pd-data">
-            <div class="m2pd-data-center">
+    <div class="m2pe">
+        <div class="m2pe-data">
+            <div class="m2pe-data-center">
                 <!-- 顶部按键 -->
                 <div class="key-row">
                     <button class="keyboard-key" @click="handleRotate('counterclockwise')">Q</button>
@@ -17,10 +17,10 @@
                     <button class="keyboard-key keyboard-key-down">Z</button>
                 </div>
             </div>
-            <div class="m2pd-data-btn">高速</div>
+            <div class="m2pe-data-btn">高速</div>
         </div>
-        <div class="m2pd-menu">
-            <div class="m2pd-menu-item" v-for="(item, index) in menu" :key="index"
+        <div class="m2pe-menu">
+            <div class="m2pe-menu-item" v-for="(item, index) in menu" :key="index"
                 :class="{ 'emergency': item.label === '急停' }">
                 {{ item.label }}
             </div>
@@ -58,7 +58,7 @@ const handleRotate = (direction: 'clockwise' | 'counterclockwise') => {
 </script>
 
 <style lang="scss" scoped>
-.m2pd {
+.m2pe {
     aspect-ratio: 337/140;
     width: 100%;
     border-radius: 5px;
