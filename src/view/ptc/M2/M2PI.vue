@@ -22,7 +22,7 @@
 
     <div class="m2pi-B">
       <div class="m2pi-B-center">
-        <div class="m2pi-B-center-move" :style="{ bottom: step + 'px' }">
+        <div class="m2pi-B-center-move" :style="{ bottom: step + 'px' }" ref="sliderRef" @mousedown="startDrag">
           <div />
         </div>
         <div class="m2pi-B-center-item" v-for="(item, index) in list" :key="index" :style="getItemStyle(index)">
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 const iconModules = import.meta.glob("@/assets/imgs/m2/*.png", { eager: true });
 
 const getIcon = (icon) => {
@@ -89,15 +89,80 @@ const list = [
   },
 ];
 
-const step = 12;
+// 滑块位置 值越大，滑块越靠上；值越小，滑块越靠下
+const step = ref(12);
+
+// 滑块元素引用
+const sliderRef = ref(null)
+
+// 父容器引用
+const containerRef = ref(null)
+
+// 拖拽状态
+const isDragging = ref(false)
 
 const gapList = [30, 24, 18, 12];
+
+// 开始拖拽
+const startDrag = (e) => {
+  // 加上时滑动滑块就不会选中页面中的文本
+  e.preventDefault();
+  isDragging.value = true;
+  // 获取父容器高度(限制滑动范围)
+  // ?是为了避免因元素未加载导致的 Cannot read property 'offsetHeight' of null 错误
+  const containerHeight = containerRef.value?.offsetHeight || 0;
+  // 获取滑块高度
+  const sliderHeight = sliderRef.value?.offsetHeight || 13;
+
+  // 鼠标触摸移动实时计算易懂位置
+  const handleMove = (e) => {
+    // 不是拖拽状态就不处理
+    if (!isDragging.value) return;
+
+    // 获取当前触点位置
+    const clientY = e.clientY
+
+    // 计算父容器顶部相对于视口的位置
+    // getBoundingClientRect()：DOM 元素的方法，返回一个对象，包含元素相对于「浏览器视口」的位置和尺寸信息
+    const containerTop = containerRef.value?.getBoundingClientRect().top || 0;
+    // 计算滑块在父容器内的垂直位置(从底部算起)
+    // - clientY - containerTop：触点距离父容器顶部的垂直距离（从顶部算起）
+    // - containerHeight - 父容器高度：父容器高度 - 滑块距离父容器顶部的值 = 滑块距离父容器底部的距离（即滑块的bottom值）
+    const relativeY = containerHeight - (clientY - containerTop);
+    // 限制范围在[0, containerHeight - sliderHeight]内，确保滑块不会超出容器
+    // 父容器高度（238px） - 滑块高度（13px）= 225px（滑块顶部不超出父容器顶部的最大bottom值）
+    const maxY = containerHeight - sliderHeight;
+    const clampedY = Math.max(0, Math.min(relativeY, maxY));
+    // 更新滑块位置(单位px)
+    step.value = clampedY;
+  }
+
+  // 结束拖拽
+  const handleEnd = () => {
+    isDragging.value = false;
+    // 移除事件监听
+    document.removeEventListener('mousemove', handleMove);
+    document.removeEventListener('mouseup', handleEnd);
+  };
+
+  // 绑定全局事件(避免鼠标移出滑块后停止拖拽)
+  document.addEventListener('mousemove', handleMove);
+  document.addEventListener('mouseup', handleEnd);
+};
 
 const getItemStyle = (index) => {
   return {
     marginTop: `${gapList[index]}px`,
   };
 };
+
+// 挂载时获取父容器引用
+onMounted(() => {
+  // 父容器为滑块的直接父元素（.m2pi-B-center）
+  containerRef.value = sliderRef.value?.parentElement;
+})
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -159,7 +224,6 @@ const getItemStyle = (index) => {
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-fill-color: transparent;
         font-size: 14px;
       }
 
@@ -210,6 +274,7 @@ const getItemStyle = (index) => {
         justify-content: center;
         align-items: center;
         left: -7.5px;
+        cursor: pointer;
 
         div {
           width: 7px;
