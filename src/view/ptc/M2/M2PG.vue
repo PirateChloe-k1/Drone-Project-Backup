@@ -5,7 +5,7 @@
         <div class="m2pg-RL-item-label">水平速度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            LData.horizontalVelocity
+            Number(props.sharedData.horizontalVelocity).toFixed(2)
           }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
@@ -14,7 +14,7 @@
         <div class="m2pg-RL-item-label">垂直速度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            LData.verticalVelocity
+            Math.round(Number(props.sharedData.verticalVelocity))
           }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
@@ -22,21 +22,21 @@
       <div class="m2pg-RL-item m2pg-RL-L">
         <div class="m2pg-RL-item-label">风速</div>
         <div class="m2pg-RL-item-center">
-          <span class="m2pg-RL-item-center-value">{{ LData.windSpeed }}</span>
+          <span class="m2pg-RL-item-center-value">{{ Math.round(Number(props.sharedData.windSpeed)) }}</span>
           <span class="m2pg-RL-item-center-unit">m/s</span>
         </div>
       </div>
     </div>
     <div class="m2pg-C">
       <div class="m2pg-C-L">
-        <div class="m2pg-C-L-value">{{ CData.value }}°</div>
+        <div class="m2pg-C-L-value">{{ Number(CData.value).toFixed(1) }}°</div>
         <div class="m2pg-C-L-bar">
           <img src="@/assets/imgs/m2/IMG3.png" class="m2pg-C-L-bar-arrow"
             :style="{ top: 'calc(50% - ' + CData.value + 'px)' }" />
         </div>
       </div>
       <div class="m2pg-C-R">
-        <div class="m2pg-C-R-value">{{ angle.toFixed(1) }}°</div>
+        <div class="m2pg-C-R-value">{{ Number(angle).toFixed(1) }}°</div>
         <div class="m2pg-C-R-bar">
           <!-- 图片给了一个19.3°的自带旋转 -->
           <div class="m2pg-C-R-bar-BG" :style="{
@@ -52,7 +52,7 @@
         <div class="m2pg-RL-item-label">海拔高度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            RData.horizontalVelocity
+            Number(props.sharedData.height).toFixed(2)
           }}</span>
           <span class="m2pg-RL-item-center-unit">m</span>
         </div>
@@ -61,7 +61,7 @@
         <div class="m2pg-RL-item-label">相对高度</div>
         <div class="m2pg-RL-item-center">
           <span class="m2pg-RL-item-center-value">{{
-            RData.verticalVelocity
+            Number(RData.verticalVelocity).toFixed(1)
           }}</span>
           <span class="m2pg-RL-item-center-unit">m</span>
         </div>
@@ -69,7 +69,7 @@
       <div class="m2pg-RL-item m2pg-RL-R">
         <div class="m2pg-RL-item-label">机场距离</div>
         <div class="m2pg-RL-item-center">
-          <span class="m2pg-RL-item-center-value">{{ RData.windSpeed }}</span>
+          <span class="m2pg-RL-item-center-value">{{ Number(RData.windSpeed).toFixed(2) }}</span>
           <span class="m2pg-RL-item-center-unit">m</span>
         </div>
       </div>
@@ -95,9 +95,20 @@ const CData = {
   angle: 19.3,
 };
 
-// 接收父组件传递的角度
+
 const props = defineProps<{
+  // 接收父组件传递的角度
   compassAngle: number;
+  sharedData:{
+    // 海拔高度
+    height: string,
+    // 水平速度
+    horizontalVelocity: string,
+    // 垂直速度
+    verticalVelocity: string,
+    // 风速
+    windSpeed: string,
+  }
 }>();
 
 // 计算最终角度

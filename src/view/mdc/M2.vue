@@ -6,19 +6,24 @@
     <VideoBackground :v-if="!isVideoInPip" :isPip="false" />
 
     <div class="m2-top">
-      <M2PA />
+      <M2PA :sharedData="sharedData" />
       <M2PB class="m2-top-map" :is-video-in-pip="isVideoInPip" :original-bg="'/src/assets/imgs/m2/BG11.png'"
         :m2-bg="'/src/assets/imgs/m2/BG11.png'" @toggle-video="toggleVideoPosition" />
     </div>
     <div class="m2-bottom">
       <div class="m2-bottom-R">
         <M2PC />
-        <M2PD :visible="isM2PDVisible" @close-panel="isM2PDVisible = false"/>
+        <M2PD :visible="isM2PDVisible" @close-panel="isM2PDVisible = false" />
         <!-- 监听M2PE的旋转事件 -->
+        <!-- M2PE与M2PG同时存在,与M2PD互斥 -->
         <M2PE v-if="!isM2PDVisible" @rotate-compass="handleCompassRotate" />
       </div>
       <!-- 将旋转角度传递给M2PG -->
-      <M2PG v-if="!isM2PDVisible" :compass-angle="compassAngle" />
+      <!-- M2PE与M2PG同时存在,与M2PD互斥 -->
+      <M2PG 
+      :sharedData="sharedData"
+      v-if="!isM2PDVisible" 
+      :compass-angle="compassAngle" />
       <!-- 监听M2PH的指点飞行事件 -->
       <M2PH @open-panel="openPanel" />
     </div>
@@ -26,7 +31,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import M2PA from "@/view/ptc/M2/M2PA.vue";
 import M2PB from "@/view/ptc/M2/M2PB.vue";
 import M2PC from "@/view/ptc/M2/M2PC.vue";
@@ -36,6 +41,13 @@ import M2PG from "@/view/ptc/M2/M2PG.vue";
 import M2PH from "@/view/ptc/M2/M2PH.vue";
 import M2PI from "@/view/ptc/M2/M2PI.vue";
 import VideoBackground from "@/components/M2/video/VideoBackground.vue";
+const sharedData = reactive({
+  height: "357.22675",
+  horizontalVelocity: "1.38526",
+  verticalVelocity: "7.265",
+  windSpeed: "31.884",
+})
+
 // 控制M2PD的显示与隐藏
 const isM2PDVisible = ref(false)
 
