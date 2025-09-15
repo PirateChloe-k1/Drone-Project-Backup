@@ -3,7 +3,7 @@
     <!-- 图片背景 - 在切换后显示 -->
     <div v-if="isVideoInPip" class="background-image" :style="{ backgroundImage: `url(${backgroundImageUrl})` }"></div>
     <!-- 视频背景 - 在未切换时显示 -->
-    <VideoBackground v-if="!isVideoInPip" :isPip="false" />
+    <VideoBackground :v-if="!isVideoInPip" :isPip="false" />
 
     <div class="m2-top">
       <M2PA />
@@ -15,10 +15,10 @@
         <M2PC />
         <M2PD :visible="isM2PDVisible" @close-panel="isM2PDVisible = false"/>
         <!-- 监听M2PE的旋转事件 -->
-        <M2PE @rotate-compass="handleCompassRotate" />
+        <M2PE v-if="!isM2PDVisible" @rotate-compass="handleCompassRotate" />
       </div>
       <!-- 将旋转角度传递给M2PG -->
-      <M2PG :compass-angle="compassAngle" />
+      <M2PG v-if="!isM2PDVisible" :compass-angle="compassAngle" />
       <!-- 监听M2PH的指点飞行事件 -->
       <M2PH @open-panel="openPanel" />
     </div>
