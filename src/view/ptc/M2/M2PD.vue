@@ -4,11 +4,11 @@
       <div class="m2pd-data-center">
         <div class="m2pd-data-center-item">
           <span class="m2pd-data-center-item-title">任务剩余距离：</span
-          ><span class="m2pd-data-center-item-value">{{ data.distance }}m</span>
+          ><span class="m2pd-data-center-item-value">{{ Number(data.distance).toFixed(2) }}m</span>
         </div>
         <div class="m2pd-data-center-item">
           <span class="m2pd-data-center-item-title">任务剩余时间：</span
-          ><span class="m2pd-data-center-item-value">{{ data.hours }}s</span>
+          ><span class="m2pd-data-center-item-value">{{ Math.round(Number(data.hours)) }}s</span>
         </div>
       </div>
       <div class="m2pd-data-btn" @click="handleExit">退出指点飞行</div>
@@ -23,8 +23,10 @@
 
 <script lang="ts" setup>
 const data = {
-  distance: "24.28",
-  hours: "7",
+  // distance: "24.28",
+  distance: "24.2656",
+  // hours: "7",
+  hours: "8.664",
 };
 
 const menu = [
