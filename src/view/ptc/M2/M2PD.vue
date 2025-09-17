@@ -14,7 +14,7 @@
       <div class="m2pd-data-btn" @click="handleExit">退出指点飞行</div>
     </div>
     <div class="m2pd-menu">
-      <div class="m2pd-menu-item" v-for="(item, index) in menu" :key="index">
+      <div class="m2pd-menu-item" v-for="(item, index) in menu" :key="index" @click="handleStatus">
         {{ item.label }}
       </div>
     </div>
@@ -40,6 +40,11 @@ const menu = [
     label: "急停",
   },
 ];
+
+// 返航 急停 点击后出现弹窗
+const handleStatus = () => {
+  console.log('handleStatus')
+}
 
 // 向父组件发射关闭面板事件
 const emit = defineEmits<{

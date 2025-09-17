@@ -28,6 +28,7 @@
       <M2PH @open-panel="openPanel" />
     </div>
     <M2PI class="m2-M2PI" />
+    <Dialog />
   </div>
 </template>
 <script lang="ts" setup>
@@ -41,6 +42,7 @@ import M2PG from "@/view/ptc/M2/M2PG.vue";
 import M2PH from "@/view/ptc/M2/M2PH.vue";
 import M2PI from "@/view/ptc/M2/M2PI.vue";
 import VideoBackground from "@/components/M2/video/VideoBackground.vue";
+import Dialog from "@/components/M2/Dialog.vue";
 const sharedData = reactive({
   height: "357.22675",
   horizontalVelocity: "1.38526",
